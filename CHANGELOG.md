@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-03-28
+- Introduced Claude memory persistence so the taskboard assistant can recall prior context and preferences across sessions, enabling warmer, more relevant guidance during reviews ([CLAUDE.md](CLAUDE.md)).
+- Streamlined the assistant response pipeline to cut turnaround time for UI console replies, keeping the taskboard interactions snappier when juggling multiple task lists ([local_taskboard_modern_V2.pyw](local_taskboard_modern_V2.pyw)).
+
 ## 2026-03-23
 - Automated the monthly calendar block generation and ensured every Daily Report stays in sync with `calendar_events.json`, eliminating manual edits and keeping the Markdown view consistent with the app ([local_taskboard_modern_V2.pyw](local_taskboard_modern_V2.pyw)).
 - Polished the calendar UI by enforcing uniform cell sizing and wiring in week-navigation controls so the in-app timeline can slide across weeks without reopening the app ([local_taskboard_modern_V2.pyw](local_taskboard_modern_V2.pyw)).
