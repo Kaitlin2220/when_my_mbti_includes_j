@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(pythonw -c \"import tkinter; print\\('tkinter ok'\\)\")",
+      "Bash(pythonw -m py_compile local_taskboard_modern_V2.pyw)",
+      "Bash(pythonw -c ':*)",
+      "Read(//c/Users/王/My_AI_Agents/**)",
+      "Bash(pythonw:*)"
     ]
   }
 }

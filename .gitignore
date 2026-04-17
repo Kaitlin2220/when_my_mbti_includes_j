@@ -1,0 +1,30 @@
+# Python 相关缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境（如果有使用的话）
+venv/
+env/
+.env/
+
+# IDE 和编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志文件
+*.log
+
+# ----------------------------
+# 针对当前 Schedule_Manager 项目的特殊文件：
+# ----------------------------
+
+# 如果不想把个人生活数据同步到 Git 仓库，请取消下面这几行的注释：
+# *.json
+Daily_Reports/
+Daily_Quotes/
+# illustrations/
+
+# 如果你希望通过 Git 来在多台电脑间同步你的日历和任务数据，则【不需要】取消注释上面的内容

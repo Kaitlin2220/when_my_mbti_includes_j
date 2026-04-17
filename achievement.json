@@ -1,0 +1,20 @@
+{
+  "找工作": {
+    "简历": true,
+    "日常实习": true,
+    "暑期实习": false,
+    "一面": false,
+    "二面": false,
+    "终面": false,
+    "offer": false
+  },
+  "毕业": {
+    "开题": true,
+    "中期": false,
+    "初稿": false,
+    "定稿": false,
+    "查重": false,
+    "答辩": false,
+    "离校": false
+  }
+}

@@ -21,16 +21,18 @@
 - [ ] 2019年还出了放开三胎的政策。你看一下政策出台的时间。这个政策会影响对性别的偏好。你也可以用生育相关关键词看看三胎政策的影响。
 
 ### 📁 [小论文（证言）]
-- [ ] 国谈药代码检查
+- [ ] 就业异质性
 - [ ] 你把support_no_prover.dta append 到现在的support.dta之后再跑一个用never treated作为control group的did, 用csdid那个命令
+- [x] 国谈药代码检查
 
 ### 📁 [实习相关]
-- [ ] 继续过一遍offer和supplier
 - [ ] ai网站优化简历
+- [x] 继续过一遍offer和supplier
+- [x] 问入职事宜
 
 ### 📁 [其他]
-- [ ] agent中的claude仍然无法读取上下文
 - [ ] kaggle 上项目实战
 - [ ] 腾讯未来产品经理创造营
 - [ ] sql 实战
+- [x] agent中的claude仍然无法读取上下文
 
