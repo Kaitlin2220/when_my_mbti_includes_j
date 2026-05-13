@@ -273,31 +273,39 @@ def call_claude(prompt, callback=None, root=None, work_dir=None,
                 session_id=None, system_prompt=None):
     def run():
         try:
-            # 构建命令：使用 -p + --output-format json 获取 session_id
-            # 如果有 session_id，则用 --resume 续接上下文
-            cmd_parts = ['claude', '-p', '--output-format', 'json']
+            # --system-prompt 不是合法的 CLI 参数，中文传命令行会导致路径报错。
+            # 改为把 system prompt 拼入 stdin 正文头部，彻底规避编码问题。
+            actual_input = prompt
+            if system_prompt and not session_id:
+                actual_input = f"[系统设定]\n{system_prompt}\n[用户消息]\n{prompt}"
+
+            cmd_parts = ['cmd', '/c', 'claude', '-p', '--output-format', 'json']
             if session_id:
                 cmd_parts += ['--resume', session_id]
-            if system_prompt:
-                # 用 --system-prompt 传递系统提示（仅首次）
-                safe_sys = system_prompt.replace("'", "'\"'\"'")
-                cmd_parts += ['--system-prompt', safe_sys]
             if work_dir and os.path.exists(work_dir):
                 cmd_parts += ['--add-dir', work_dir]
-            # 用标准输入传递用户消息，避免命令行字符转义问题
+
             result = subprocess.run(
                 cmd_parts,
-                input=prompt,
-                capture_output=True, text=True, encoding='utf-8',
-                errors='ignore', creationflags=subprocess.CREATE_NO_WINDOW
+                input=actual_input.encode('utf-8'),
+                capture_output=True,
+                creationflags=subprocess.CREATE_NO_WINDOW
             )
-            raw = result.stdout.strip()
+            # 手动解码：优先 UTF-8，失败则 GBK（中文 Windows cmd 默认编码）
+            def _decode(b):
+                try:
+                    return b.decode('utf-8')
+                except UnicodeDecodeError:
+                    return b.decode('gbk', errors='replace')
+
+            raw = _decode(result.stdout).strip()
+            stderr_txt = _decode(result.stderr).strip()
+
             new_session_id = None
             output = ''
             if raw:
                 try:
                     data = json.loads(raw)
-                    # claude --output-format json 返回最后一个 result 对象
                     if isinstance(data, dict):
                         output = data.get('result', '') or data.get('content', '') or raw
                         new_session_id = data.get('session_id')
@@ -305,8 +313,8 @@ def call_claude(prompt, callback=None, root=None, work_dir=None,
                         output = raw
                 except json.JSONDecodeError:
                     output = raw
-            elif result.stderr.strip():
-                output = f"⚠️ Claude 报错:\n{result.stderr}"
+            elif stderr_txt:
+                output = f"⚠️ Claude 报错:\n{stderr_txt}"
             else:
                 output = "⚠️ 执行完毕，无文字返回。"
             if callback and root:

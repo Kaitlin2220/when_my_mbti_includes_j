@@ -28,3 +28,14 @@ Daily_Quotes/
 # illustrations/
 
 # 如果你希望通过 Git 来在多台电脑间同步你的日历和任务数据，则【不需要】取消注释上面的内容
+
+# ----------------------------
+# 个人数据文件（不要提交到仓库）
+# ----------------------------
+achievement.json
+growth_data.json
+calendar_events.json
+*.bat
+*.ico
+task_progress.json
+tray_icon.png
