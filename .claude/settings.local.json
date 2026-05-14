@@ -6,7 +6,11 @@
       "Bash(pythonw -m py_compile local_taskboard_modern_V2.pyw)",
       "Bash(pythonw -c ':*)",
       "Read(//c/Users/王/My_AI_Agents/**)",
-      "Bash(pythonw:*)"
+      "Bash(pythonw:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ]
   }
 }
