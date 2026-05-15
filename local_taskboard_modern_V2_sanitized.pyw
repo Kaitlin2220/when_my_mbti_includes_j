@@ -66,7 +66,7 @@ CATEGORY_PATHS = {
     "分类2": r"C:\placeholder\分类2",
     "分类3": r"C:\placeholder\分类3",
     "分类4": r"C:\placeholder\分类4",
-    "其他": r"C:\placeholder\其他"
+    
 }
 
 CATEGORIES = {
@@ -74,7 +74,7 @@ CATEGORIES = {
     "分类2": {"icon": "📊", "color": COLORS['blue']},
     "分类3": {"icon": "📝", "color": COLORS['peach']},
     "分类4": {"icon": "💼", "color": "#7CB342"},
-    "其他": {"icon": "📌", "color": COLORS['text_tertiary']}
+    
 }
 
 KEYWORDS = {
@@ -82,7 +82,7 @@ KEYWORDS = {
     "分类2": [],
     "分类3": [],
     "分类4": [],
-    "其他": []
+   
 }
 
 WEEKDAY_CN = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
@@ -912,7 +912,7 @@ class GrowthRecordDialog(tk.Toplevel):
 class TaskBoardApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("wy成长计划")
+        self.root.title("my成长计划")
         self.root.geometry("1200x860")
         self.root.minsize(900, 660)
         self.root.configure(bg=COLORS['bg_main'])
@@ -1825,7 +1825,7 @@ class TaskBoardApp:
         self.ask_custom_with_text(txt)
 
     def ask_custom_with_text(self, txt):
-        self.append_chat("👤 wy:", txt, COLORS['text_secondary'])
+        self.append_chat("👤:", txt, COLORS['text_secondary'])
 
         # 仅在首次会话时传入系统提示；后续 --resume 自动携带历史
         sys_prompt = None
@@ -1960,7 +1960,7 @@ class TaskBoardApp:
             pystray.MenuItem("显示看板 (Alt+Q)", self.show_window),
             pystray.MenuItem("完全退出", self.quit_app)
         )
-        self.tray_icon = pystray.Icon("TaskBoard", create_image(), "wy成长计划", menu)
+        self.tray_icon = pystray.Icon("TaskBoard", create_image(), "my成长计划", menu)
         threading.Thread(target=self.tray_icon.run, daemon=True).start()
 
     def setup_hotkey(self):
@@ -1995,7 +1995,7 @@ class TaskBoardApp:
             clean_review = review_text.replace('\n', ' ')
             prompt += f"📝我的今日随笔：{clean_review}。 "
         prompt += "请作为我的极客 AI 助手，用温暖、鼓励的语气（带emoji）帮我总结今天的工作，夸夸我的努力，并为明天未完成的任务给出简短、专业的建议。绝对不要废话。"
-        self.append_chat("⏰ 小克有话说:", "wy，现在是晚上 22:30 啦！已为您自动召唤 Claude 查阅今日进度...", COLORS['accent'])
+        self.append_chat("⏰ 小克有话说: 你好，现在是晚上 22:30 啦！已为您自动召唤 Claude 查阅今日进度...", COLORS['accent'])
         call_claude(prompt, self.show_claude_response, self.root,
                     session_id=self.claude_session_id)
 
@@ -2018,7 +2018,7 @@ class TaskBoardApp:
 # 程序入口（单例锁）
 # ==========================================
 if __name__ == "__main__":
-    mutex_name = "wy_TaskBoard_SingleInstance_Mutex"
+    mutex_name = "my_TaskBoard_SingleInstance_Mutex"
     mutex = ctypes.windll.kernel32.CreateMutexW(None, False, mutex_name)
     last_error = ctypes.windll.kernel32.GetLastError()
     if last_error == 183:
